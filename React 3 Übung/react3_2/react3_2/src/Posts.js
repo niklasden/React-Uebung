@@ -13,7 +13,9 @@ class Posts extends React.Component {
         super(props);
         this.state = {
           posts: [],
+          searchKey: "",
         };
+        
     }
     componentDidMount(){
         fetch('https://jsonplaceholder.typicode.com/posts')
@@ -22,12 +24,32 @@ class Posts extends React.Component {
             this.setState({posts})}
         ); 
     }
+
+    changesearchKey(event){
+        this.setState({searchKey: event.target.value})
+        // console.log(this.state.searchKey)
+    }
+
+    search(){
+        fetch('https://jsonplaceholder.typicode.com/posts')
+        .then(response => response.json())
+        .then(posts => {
+
+            let newposts = posts.filter(post => {
+                if (post.title.includes(this.state.searchKey)){
+                    return post
+                }
+            })
+            this.setState({posts: newposts})
+        }
+        ); 
+    }
     
     render() {
         return (
             <div >
                 <form>
-                    <TextField fullWidth label="Suche" size="medium" margin="normal" />
+                    <TextField fullWidth label="Suche" size="medium" margin="normal" onChange={this.changesearchKey.bind(this)}  />
                 </form>
 
                 <Button style={{
@@ -37,7 +59,7 @@ class Posts extends React.Component {
                     transform: 'translateX(-50%)',
                     marginTop: 15,
                     marginBottom: 15
-                }}>Search</Button>
+                }} onClick={this.search.bind(this)}>Search</Button>
 
                 <Divider variant='fullWidth'></Divider>
                 {
