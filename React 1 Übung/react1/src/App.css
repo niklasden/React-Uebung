@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #a7a7a7;
+  color: rgb(252, 252, 252);
+}
+
+.App-content {
+  background-color: #fdfdfd;
+  color: rgb(252, 174, 0);
+}
+
