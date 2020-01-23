@@ -34,7 +34,6 @@ class Posts extends React.Component {
         fetch('https://jsonplaceholder.typicode.com/posts')
         .then(response => response.json())
         .then(posts => {
-
             let newposts = posts.filter(post => {
                 if (post.title.includes(this.state.searchKey)){
                     return post
