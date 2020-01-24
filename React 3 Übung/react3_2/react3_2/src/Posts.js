@@ -37,7 +37,8 @@ class Posts extends React.Component {
             let newposts = posts.filter(post => {
                 if (post.title.includes(this.state.searchKey)){
                     return post
-                }
+                } 
+                return null
             })
             this.setState({posts: newposts})
         }
